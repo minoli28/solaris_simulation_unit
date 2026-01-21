@@ -1,10 +1,11 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import StatsPanel from './StatsPanel';
 import FacilityMap from './FacilityMap';
 import AlertStream from './AlertStream';
 import PatientBoard from './PatientBoard';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export default function Dashboard() {
     const [status, setStatus] = useState({});
@@ -25,9 +26,9 @@ export default function Dashboard() {
         if (!session) return;
         try {
             const [statusRes, facilitiesRes, alertsRes] = await Promise.all([
-                axios.get(`http://localhost:8000/status?session_id=${session}`),
-                axios.get(`http://localhost:8000/facilities?session_id=${session}`),
-                axios.get(`http://localhost:8000/alerts?session_id=${session}`)
+                axios.get(`${API_URL}/status?session_id=${session}`),
+                axios.get(`${API_URL}/facilities?session_id=${session}`),
+                axios.get(`${API_URL}/alerts?session_id=${session}`)
             ]);
 
             setStatus(statusRes.data);

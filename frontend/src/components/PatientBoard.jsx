@@ -11,13 +11,13 @@ const FACILITIES = [
 const PatientBoard = ({ patients }) => {
     // Helper to color code statuses
     const getStatusColor = (p) => {
-        if (p.status === 'LWBS') return 'bg-red-900/30 border-red-500 text-red-200';
-        if (p.status === 'DISCHARGED') return 'bg-green-900/30 border-green-500 text-green-200';
-        if (p.disposition === 'ADMIT') return 'bg-purple-900/30 border-purple-500 text-purple-200';
-        if (p.status === 'ROOMED') return 'bg-blue-900/30 border-blue-500 text-blue-200';
-        if (p.status === 'ADMITTED_NO_BED') return 'bg-orange-900/30 border-orange-500 text-orange-200'; // Hallway
-        if (p.status === 'WAITING_FOR_RESULTS') return 'bg-teal-900/30 border-teal-500 text-teal-200'; // Internal Wait
-        return 'bg-yellow-900/30 border-yellow-500 text-yellow-200'; // Waiting
+        if (p.status === 'LWBS') return 'bg-red-100 dark:bg-red-900/30 border-red-200 dark:border-red-500 text-red-700 dark:text-red-200';
+        if (p.status === 'DISCHARGED') return 'bg-green-100 dark:bg-green-900/30 border-green-200 dark:border-green-500 text-green-700 dark:text-green-200';
+        if (p.disposition === 'ADMIT') return 'bg-purple-100 dark:bg-purple-900/30 border-purple-200 dark:border-purple-500 text-purple-700 dark:text-purple-200';
+        if (p.status === 'ROOMED') return 'bg-blue-100 dark:bg-blue-900/30 border-blue-200 dark:border-blue-500 text-blue-700 dark:text-blue-200';
+        if (p.status === 'ADMITTED_NO_BED') return 'bg-orange-100 dark:bg-orange-900/30 border-orange-200 dark:border-orange-500 text-orange-700 dark:text-orange-200'; // Hallway
+        if (p.status === 'WAITING_FOR_RESULTS') return 'bg-teal-100 dark:bg-teal-900/30 border-teal-200 dark:border-teal-500 text-teal-700 dark:text-teal-200'; // Internal Wait
+        return 'bg-yellow-100 dark:bg-yellow-900/30 border-yellow-200 dark:border-yellow-500 text-yellow-700 dark:text-yellow-200'; // Waiting
     };
 
     const getStageLabel = (p) => {
@@ -38,13 +38,13 @@ const PatientBoard = ({ patients }) => {
                     .sort((a, b) => (a.ttl === -1 ? -1 : 1)); // Active on top
 
                 return (
-                    <div key={fac.id} className="flex flex-col bg-gray-900/50 rounded-lg border border-gray-700 h-full">
-                        <div className="p-2 border-b border-gray-700 bg-gray-800 text-center font-bold text-gray-300 text-xs uppercase tracking-wider">
+                    <div key={fac.id} className="flex flex-col bg-white dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-700 h-full shadow-sm dark:shadow-none transition-colors duration-300">
+                        <div className="p-2 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-center font-bold text-slate-700 dark:text-slate-300 text-xs uppercase tracking-wider">
                             {fac.id}
                         </div>
-                        <div className="flex-1 overflow-y-auto p-2 space-y-2 scrollbar-thin scrollbar-thumb-gray-700">
+                        <div className="flex-1 overflow-y-auto p-2 space-y-2 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700">
                             {facPatients.length === 0 && (
-                                <div className="text-gray-600 text-xs text-center py-4">No Active Patients</div>
+                                <div className="text-slate-400 dark:text-slate-600 text-xs text-center py-4">No Active Patients</div>
                             )}
                             {facPatients.map((p) => (
                                 <div
@@ -56,9 +56,9 @@ const PatientBoard = ({ patients }) => {
                                         <span className="font-mono font-bold">P-{p.id.slice(-4)}</span>
                                         <div className="flex space-x-1">
                                             {p.resource_type && p.resource_type !== "NONE" && p.resource_type !== "null" && (
-                                                <span className="font-bold bg-white/20 px-1 rounded text-[9px]">{p.resource_type}</span>
+                                                <span className="font-bold bg-white/50 dark:bg-white/20 px-1 rounded text-[9px]">{p.resource_type}</span>
                                             )}
-                                            <span className="font-bold bg-black/40 px-1 rounded">CTAS {p.assigned_ctas}</span>
+                                            <span className="font-bold bg-black/10 dark:bg-black/40 px-1 rounded">CTAS {p.assigned_ctas}</span>
                                         </div>
                                     </div>
                                     <div className="text-[10px] uppercase font-semibold tracking-tight opacity-90">

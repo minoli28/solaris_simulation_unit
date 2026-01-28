@@ -430,7 +430,11 @@ class SimulationEngine:
             "nedocs": nedocs,
             "hallway_patients": hallway_count,
             "avg_los": round(avg_los, 1),
-            "patients": patient_list
+            "patients": patient_list,
+            "capacity_thresholds": {
+                "total_physical": sum([r["physical_beds"] for r in FACILITY_RESOURCES.values()]),
+                "total_surge": sum([r["surge_capacity"] for r in FACILITY_RESOURCES.values()])
+            }
         }
 
     def _generate_new_encounter(self, facility_id, is_fast_forward=False):

@@ -1,9 +1,12 @@
 
 import Dashboard from './components/Dashboard'
+import { ThemeProvider } from './context/ThemeContext'
 
 function App() {
   return (
-    <Dashboard />
+    <ThemeProvider>
+      <Dashboard />
+    </ThemeProvider>
   )
 }
 
